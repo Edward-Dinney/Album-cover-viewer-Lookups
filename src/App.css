@@ -1,0 +1,83 @@
+.bg {
+  background-image: url("./components/background.JPG");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* This creates the parallax effect */
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  background-image: url("./components/logo.png");
+  background-size: contain; /* Ensure the image fits within the container */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-position: center; /* Center the image inside the container */
+  cursor: pointer;
+}
+
+
+.albums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjusts column size based on screen */
+  column-gap: 0;
+  row-gap: 0;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px; /* Limits the grid width to make it look good on larger screens */
+  margin: 0 auto; /* Centers the grid */
+}
+
+.album-card {
+  position: relative; /* Necessary for album-name to be positioned correctly */
+  width: 100%;
+}
+
+.album-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 0px;
+}
+
+@media (min-width: 768px) {
+  .albums-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Larger columns on wider screens */
+  }
+}
+.album-name-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.album-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(255, 0, 0); /* Semi-transparent background */
+  color: white;
+  text-align: center;
+  padding: 10px;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease-in-out; /* Smooth transition */
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0 0 0px 0px; /* Match the border radius of the album image */
+}
+
+.album-card:hover .album-name {
+  opacity: 100; /* Show the album name on hover */
+}
+
+
+.download {
+  position: absolute;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 0 0 0px 0px;
+}
