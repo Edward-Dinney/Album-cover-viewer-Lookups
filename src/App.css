@@ -27,7 +27,7 @@
   column-gap: 0;
   row-gap: 0;
   padding: 20px;
-  width: 100%;
+  width: 95%;
   max-width: 1200px; /* Limits the grid width to make it look good on larger screens */
   margin: 0 auto; /* Centers the grid */
 }
