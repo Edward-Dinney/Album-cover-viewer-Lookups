@@ -7,8 +7,8 @@ const SpotifyAlbums = () => {
     const [searchInput, setSearchInput] = useState("");
     const [albums, setAlbums] = useState([]);
     const [token, setToken] = useState('');
-    const CLIENT_ID = '';
-    const CLIENT_SECRET = '';
+    const CLIENT_ID = '321e792db2664c6d845dbae3b78c4aec';
+    const CLIENT_SECRET = '16b36cb154134831b3c62ab24ceeb620';
     useEffect(() => {
         var authParameters = {
             method: 'POST',
