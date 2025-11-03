@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import "./App.css";
 import logo from './components/logo.png';
 import download from './components/download.png';
+import lookloader from './components/looking.gif';
 
 const SpotifyAlbums = () => {
     const [searchInput, setSearchInput] = useState("");
     const [albums, setAlbums] = useState([]);
     const [token, setToken] = useState('');
+    const [loading, setLoading] = useState(false);
     const CLIENT_ID = '321e792db2664c6d845dbae3b78c4aec';
     const CLIENT_SECRET = '16b36cb154134831b3c62ab24ceeb620';
     useEffect(() => {
@@ -22,6 +24,7 @@ const SpotifyAlbums = () => {
             .then(data => setToken(data.access_token))
     }, []);
     async function search(){
+        setLoading(true);
         var searchParameters = {
             method: 'GET',
             headers: {
@@ -40,6 +43,7 @@ const SpotifyAlbums = () => {
                 console.log(data);
                 setAlbums(data.items);
             });
+        setLoading(false);
     }    
     const handleChange = (e) => {
         e.preventDefault();
@@ -61,17 +65,20 @@ const SpotifyAlbums = () => {
                 link.remove();
             });
     };
-    
-    console.log(albums)
-    return (
-        <center>
+
+return (
+<center>
     <div className="bg">
     <img src={logo} alt="Logo" className="logo" onClick={() => window.location.reload()}/>
         <form onSubmit={handleSubmit}>
             <input type="text" placeholder="search music artists" value={searchInput} onChange={handleChange} />
-            
         </form>
 
+        {loading ? (
+        <div className="loader">
+            <img src={lookloader} alt="Loading..." className="loader-image" />
+        </div>
+        ) : (
         <div className="albums-grid">
             {albums.map(album => (
                 <div key={album.id} className="album-card">
@@ -84,16 +91,13 @@ const SpotifyAlbums = () => {
                             className="download" 
                             onClick={() => handleDownload(album.images[0].url, `${album.name.replace(/[^a-z0-9]/gi, '_')}.jpg`)} 
                         />
-                        </span>
-                        
+                        </span> 
                     </div>
-                    
                 </div>
             ))}
-        </div>
+        </div>)}
     </div>
 </center>
 );
 };
-
 export default SpotifyAlbums;

@@ -81,3 +81,7 @@
   cursor: pointer;
   border-radius: 0 0 0px 0px;
 }
+
+.loader{
+  padding: 15px;
+}
