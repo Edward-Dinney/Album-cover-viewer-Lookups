@@ -37,7 +37,7 @@ const SpotifyAlbums = () => {
             .then(data => {return data.artists.items[0].id})
         console.log("art:" + artistID);
 
-        var albums = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums', searchParameters)
+        var albums = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums?limit=50', searchParameters)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -65,7 +65,7 @@ const SpotifyAlbums = () => {
                 link.remove();
             });
     };
-
+console.log(albums);
 return (
 <center>
     <div className="bg">
