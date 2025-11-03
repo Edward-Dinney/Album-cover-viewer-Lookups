@@ -100,4 +100,6 @@ return (
 </center>
 );
 };
+
 export default SpotifyAlbums;
+
