@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* This creates the parallax effect */
+  background-attachment: fixed; 
   min-height: 100vh;
   width: 100vw;
   display: flex;
@@ -14,26 +14,26 @@
 
 .logo {
   background-image: url("./components/logo.png");
-  background-size: contain; /* Ensure the image fits within the container */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-  background-position: center; /* Center the image inside the container */
+  background-size: contain; 
+  background-repeat: no-repeat; 
+  background-position: center; 
   cursor: pointer;
 }
 
 
 .albums-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjusts column size based on screen */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
   column-gap: 0;
   row-gap: 0;
   padding: 20px;
   width: 95%;
-  max-width: 1200px; /* Limits the grid width to make it look good on larger screens */
-  margin: 0 auto; /* Centers the grid */
+  max-width: 1200px;
+  margin: 0 auto; 
 }
 
 .album-card {
-  position: relative; /* Necessary for album-name to be positioned correctly */
+  position: relative; 
   width: 100%;
 }
 
@@ -45,7 +45,7 @@
 
 @media (min-width: 768px) {
   .albums-grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Larger columns on wider screens */
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
   }
 }
 .album-name-wrapper {
@@ -58,28 +58,60 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgb(255, 0, 0); /* Semi-transparent background */
+  background-color: rgb(255, 0, 0);
   color: white;
   text-align: center;
   padding: 10px;
-  opacity: 0; /* Hidden by default */
-  transition: opacity 0.3s ease-in-out; /* Smooth transition */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
   font-size: 1rem;
   font-weight: bold;
-  border-radius: 0 0 0px 0px; /* Match the border radius of the album image */
+  border-radius: 0 0 0px 0px;
 }
 
 .album-card:hover .album-name {
-  opacity: 100; /* Show the album name on hover */
+  opacity: 100;
 }
 
+.suggestions {
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.suggestions-name {
+  padding: 3px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.suggestions-name:hover {
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+}
 
 .download {
   position: flex;
   width: 20px;
   height: auto;
   cursor: pointer;
-  
+}
+
+.download:hover {
+  transform: scale(1.2);
+  transition: transform 0.4s ease;
+}
+
+.add {
+  position: flex;
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+}
+
+.add:hover {
+  transform: scale(1.2);
+  transition: transform 0.4s ease;
 }
 
 .loader{
