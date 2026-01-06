@@ -29,21 +29,21 @@ const SpotifyAlbums = () => {
             .then(data => setToken(data.access_token))
     }, []);
     async function search(){
-        console.log(CLIENT_ID, CLIENT_SECRET);
         setLoading(true);
-        var searchParameters = {
+        const searchParameters = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
             }
-        }
-        var artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', searchParameters)
+        };
+
+        const artistID = await fetch('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', searchParameters)
             .then(response => response.json())
             .then(data => {return data.artists.items[0].id})
         console.log("art:" + artistID);
 
-        var albums = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums?limit=50', searchParameters)
+        const albums = await fetch('https://api.spotify.com/v1/artists/' + artistID + '/albums?limit=50', searchParameters)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -171,12 +171,6 @@ return (
                             src={download} 
                             alt="download" 
                             className="download" 
-                            onClick={() => handleDownload(album.images[0].url, `${album.name.replace(/[^a-z0-9]/gi, '_')}.jpg`)} 
-                        />
-                        <img 
-                            src={add} 
-                            alt="add" 
-                            className="add" 
                             onClick={() => handleDownload(album.images[0].url, `${album.name.replace(/[^a-z0-9]/gi, '_')}.jpg`)} 
                         />
                         </span> 
