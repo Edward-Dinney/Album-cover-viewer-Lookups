@@ -9,8 +9,10 @@ const SpotifyAlbums = () => {
     const [albums, setAlbums] = useState([]);
     const [token, setToken] = useState('');
     const [loading, setLoading] = useState(false);
-    const CLIENT_ID = '321e792db2664c6d845dbae3b78c4aec';
-    const CLIENT_SECRET = '16b36cb154134831b3c62ab24ceeb620';
+    const [suggestions, setSuggestions] = useState([]);
+    const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+    const CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
+
     useEffect(() => {
         var authParameters = {
             method: 'POST',
@@ -24,6 +26,7 @@ const SpotifyAlbums = () => {
             .then(data => setToken(data.access_token))
     }, []);
     async function search(){
+        console.log(CLIENT_ID, CLIENT_SECRET);
         setLoading(true);
         var searchParameters = {
             method: 'GET',
@@ -44,16 +47,17 @@ const SpotifyAlbums = () => {
                 setAlbums(data.items);
             });
         setLoading(false);
-    }    
+    }  
+
     const handleChange = (e) => {
         e.preventDefault();
         setSearchInput(e.target.value);
       };
-      const handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         search();
       }
-      const handleDownload = (url, filename) => {
+    const handleDownload = (url, filename) => {
         fetch(url)
             .then(response => response.blob())
             .then(blob => {
@@ -70,6 +74,7 @@ return (
 <center>
     <div className="bg">
     <img src={logo} alt="Logo" className="logo" onClick={() => window.location.reload()}/>
+
         <form onSubmit={handleSubmit}>
             <input type="text" placeholder="search music artists" value={searchInput} onChange={handleChange} />
         </form>
